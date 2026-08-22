@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("partials/head") %>
+
+<body>
+
+    <%- include("partials/header") %>
+
+    <%- include("partials/nav") %>
+
+    <main>
+
+        <h2>Messages</h2>
+
+        <% messages.forEach(message => { %>
+
+            <article>
+
+                <h3><%= message.title %></h3>
+
+                <p><%= message.message %></p>
+
+                <% if (message.username) { %>
+                    <p>Author: <%= message.username %></p>
+                    <p>Date: <%= message.created_at %></p>
+                <% } %>
+
+            </article>
+
+        <% }) %>
+
+    </main>
+
+    <%- include("partials/footer") %>
+
+</body>
+
+</html>
