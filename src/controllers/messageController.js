@@ -17,7 +17,10 @@ async function createMessage(req, res, next) {
 
 async function getMessages(req, res, next) {
     try {
-        if (req.user && req.user.membership_status) {
+        if (
+            req.user &&
+            (req.user.membership_status || req.user.is_admin)
+        ) {
             const messages = await messageModel.getMemberMessages();
 
             return res.render("homePage", {
