@@ -42,7 +42,6 @@ async function getUserById(userId) {
           first_name,
           last_name,
           email,
-          password_hash,
           username,
           membership_status,
           is_admin
