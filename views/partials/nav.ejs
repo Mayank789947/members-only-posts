@@ -1,0 +1,18 @@
+<nav>
+
+    <a href="/">Home</a>
+
+    <% if (isAuthenticated) { %>
+
+        <form action="/logout" method="POST">
+            <button type="submit">Logout</button>
+        </form>
+
+    <% } else { %>
+
+        <a href="/login">Login</a>
+        <a href="/users/create">Sign Up</a>
+
+    <% } %>
+
+</nav>
