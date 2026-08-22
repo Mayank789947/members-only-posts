@@ -1,6 +1,9 @@
 function renderLoginForm(req, res, next) {
     try {
-        res.render("loginForm");
+        res.render("loginForm", {
+            errors: {},
+            values: {}
+        });
     } catch (error) {
         next(error);
     }
