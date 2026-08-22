@@ -3,6 +3,17 @@ const bcrypt = require("bcrypt");
 const userModel = require("../models/userModel");
 const NotFoundError = require("../errors/NotFoundError");
 
+function renderSignupForm(req, res, next) {
+    try {
+        res.render("signupForm", {
+            errors: {},
+            values: {}
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
 async function createUser(req, res, next) {
     try {
         const { 
@@ -37,6 +48,7 @@ async function updateMembershipStatus(req, res, next) {
 }
 
 module.exports = {
+    renderSignupForm,
     createUser,
     updateMembershipStatus
 }

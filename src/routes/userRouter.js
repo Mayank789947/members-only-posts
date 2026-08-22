@@ -6,10 +6,11 @@ const requireAuth = require("../middlewares/authMiddlewares/requireAuth");
 
 const userRouter = Router();
 
+userRouter.get("/create", userController.renderSignupForm);
 userRouter.post(
     "/create",
     validateCreateUser,
-    handleValidationErrors("signUp"), 
+    handleValidationErrors("signupForm"), 
     userController.createUser);
     
 userRouter.post(
