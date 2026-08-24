@@ -3,21 +3,51 @@
 
 <%- include("partials/head") %>
 
-    <body>
+<body>
 
-        <%- include("partials/header") %>
+    <%- include("partials/header") %>
 
-            <%- include("partials/nav") %>
+    <%- include("partials/nav") %>
 
-                <main>
+    <main>
 
-                    <h2>Messages</h2>
+        <h1>Messages</h1>
 
-                    <%- include("partials/messages") %>
-                </main>
+        <% if (messages.length === 0) { %>
 
-                <%- include("partials/footer") %>
+            <p>No messages have been posted yet.</p>
 
-    </body>
+        <% } else { %>
+
+            <% messages.forEach(message => { %>
+
+                <article>
+
+                    <h2>
+                        <%= message.title %>
+                    </h2>
+
+                    <p>
+                        <%= message.message.length > 150
+                            ? message.message.slice(0, 150) + "..."
+                            : message.message
+                        %>
+                    </p>
+
+                    <a href="/messages/<%= message.id %>">
+                        View Message
+                    </a>
+
+                </article>
+
+            <% }) %>
+
+        <% } %>
+
+    </main>
+
+    <%- include("partials/footer") %>
+
+</body>
 
 </html>
