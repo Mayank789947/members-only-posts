@@ -51,7 +51,7 @@ async function updateMembershipStatus(req, res, next) {
 
         await userModel.updateMembershipStatus(true, userId);
 
-        return res.redirect("/profile");
+        return res.redirect("/users/profile");
     } catch (error) {
         next(error);
     }
