@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Error</title>
-</head>
+<%- include("../partials/head") %>
 
 <body>
 
-    <h1>Error <%= statusCode %></h1>
+    <%- include("../partials/header") %>
 
-    <p><%= message %></p>
+    <%- include("../partials/nav") %>
+
+    <main>
+
+        <h2>Error <%= statusCode %></h2>
+
+        <p><%= message %></p>
+
+        <a href="/">Go Home</a>
+
+    </main>
+
+    <%- include("../partials/footer") %>
 
 </body>
+
 </html>
