@@ -14,6 +14,16 @@ function renderSignupForm(req, res, next) {
     }
 }
 
+function renderProfile(req, res, next) {
+    try {
+        return res.render("profile", {
+            user: req.user
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
 async function createUser(req, res, next) {
     try {
         const { 
@@ -49,6 +59,7 @@ async function updateMembershipStatus(req, res, next) {
 
 module.exports = {
     renderSignupForm,
+    renderProfile,
     createUser,
     updateMembershipStatus
 }
