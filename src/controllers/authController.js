@@ -1,6 +1,7 @@
 function renderLoginForm(req, res, next) {
     try {
         res.render("loginForm", {
+            returnTo: req.session.returnTo,
             errors: {},
             values: {}
         });
@@ -10,9 +11,7 @@ function renderLoginForm(req, res, next) {
 }
 
 function login(req, res) {
-    const returnTo = req.session.returnTo;
-
-    delete req.session.returnTo;
+    const returnTo = req.body.returnTo;
 
     if (
         returnTo &&
@@ -31,7 +30,7 @@ function logout(req, res, next) {
             return next(err);
         }
 
-        return res.redirect("/login");
+        return res.redirect("/");
     });
 }
 
