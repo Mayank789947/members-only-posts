@@ -13,6 +13,11 @@ messageRouter.get(
     messageController.renderNewMessageForm
 );
 
+messageRouter.get(
+    "/:messageId",
+    messageController.getMessage
+);
+
 messageRouter.post(
     "/create",
     requireAuth,

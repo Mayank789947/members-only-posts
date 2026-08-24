@@ -46,6 +46,27 @@ async function getMemberMessages() {
     return result.rows || null;
 }
 
+async function getMessageById(messageId) {
+    const result = await pool.query(
+        `
+        SELECT
+          messages.id,
+          messages.title,
+          messages.message,
+          messages.created_at,
+          messages.updated_at,
+          users.username
+          FROM messages
+        INNER JOIN users
+        ON messages.user_id = users.id
+        WHERE messages.id = $1;
+        `,
+        [messageId]
+    );
+
+    return result.rows[0] || null;
+}
+
 async function deleteMessage(messageId) {
     const result = await pool.query(
         `
@@ -63,5 +84,6 @@ module.exports = {
     createNewMessage,
     getPublicMessages,
     getMemberMessages,
+    getMessageById,
     deleteMessage
 }

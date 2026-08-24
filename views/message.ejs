@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("partials/head") %>
+
+<body>
+
+    <%- include("partials/header") %>
+
+    <%- include("partials/nav") %>
+
+    <main>
+
+        <article>
+
+            <h2><%= message.title %></h2>
+
+            <p>
+                <%= message.message %>
+            </p>
+
+            <% if (access === "guest") { %>
+
+                <p>
+                    To see the full details, please log in to your account.
+                </p>
+
+                <a href="/login">
+                    Login
+                </a>
+
+            <% } else if (access === "non-member") { %>
+
+                <p>
+                    Author: Hidden
+                </p>
+
+                <p>
+                    Posted: Hidden
+                </p>
+
+                <p>
+                    Become a member to see the author and posting time.
+                </p>
+
+                <form action="/users/join-club" method="POST">
+                    <button type="submit">
+                        Join Club
+                    </button>
+                </form>
+
+            <% } else { %>
+
+                <p>
+                    Author: <%= message.username %>
+                </p>
+
+                <p>
+                    Posted:
+                    <%= message.created_at.toLocaleString() %>
+                </p>
+
+                <% if (message.updated_at) { %>
+
+                    <p>
+                        Updated:
+                        <%= message.updated_at.toLocaleString() %>
+                    </p>
+
+                <% } %>
+
+                <% if (access === "admin") { %>
+
+                    <form
+                        action="/messages/delete/<%= message.id %>"
+                        method="POST"
+                    >
+                        <button type="submit">
+                            Delete Message
+                        </button>
+                    </form>
+
+                <% } %>
+
+            <% } %>
+
+            <a href="/">
+                Back to Home
+            </a>
+
+        </article>
+
+    </main>
+
+    <%- include("partials/footer") %>
+
+</body>
+
+</html>
