@@ -170,3 +170,222 @@ nav {
 .empty-message {
     text-align: center;
 }
+
+
+/* =========================
+   Message Detail Page
+========================= */
+
+.message-detail {
+    max-width: 800px;
+    margin: 0 auto;
+
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    padding: 2rem;
+}
+
+.message-detail-title {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.message-content {
+    margin: 0 0 2rem;
+    white-space: normal;
+}
+
+
+/* =========================
+   Message Metadata
+========================= */
+
+.message-meta {
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+}
+
+.message-meta p {
+    margin: 0.4rem 0;
+}
+
+
+/* =========================
+   Access Messages
+========================= */
+
+.message-access {
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+    margin-top: 1.5rem;
+}
+
+.message-access p {
+    margin: 0.5rem 0;
+}
+
+
+/* =========================
+   Message Actions
+========================= */
+
+.message-action-link,
+.back-home-link {
+    font-weight: 600;
+}
+
+.message-action-link:hover,
+.back-home-link:hover {
+    text-decoration: underline;
+}
+
+.delete-message-form {
+    margin-top: 1.5rem;
+}
+
+.back-home-link {
+    display: inline-block;
+    margin-top: 2rem;
+}
+
+
+/* =========================
+   Forms
+========================= */
+
+.form-page {
+    display: flex;
+    justify-content: center;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 500px;
+
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    padding: 2rem;
+}
+
+.form-title {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.form-footer p {
+    margin: 0 0 0.4rem;
+}
+
+.form-footer a {
+    font-weight: 600;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   Form Groups
+========================= */
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-group label {
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    background-color: #fff;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: 2px solid #222;
+    outline-offset: 1px;
+}
+
+
+/* =========================
+   Form Errors
+========================= */
+
+.form-errors {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+
+/* =========================
+   Form Button
+========================= */
+
+.form-submit {
+    padding: 0.7rem 1rem;
+
+    border: none;
+    border-radius: 4px;
+
+    background-color: #222;
+    color: #fff;
+
+    font-weight: 600;
+}
+
+.form-submit:hover {
+    background-color: #444;
+}
+
+
+/* =========================
+   Field Validation Errors
+========================= */
+
+.field-error {
+    margin: 0;
+
+    color: #d32f2f;
+
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.form-auth-error {
+    margin: 0;
+    padding: 0.75rem;
+
+    border: 1px solid #d32f2f;
+    border-radius: 4px;
+
+    color: #d32f2f;
+    background-color: #fff5f5;
+
+    font-size: 0.9rem;
+}

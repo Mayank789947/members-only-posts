@@ -9,69 +9,90 @@
 
     <%- include("partials/nav") %>
 
-    <main>
+    <main class="message-page">
 
-        <article>
+        <article class="message-detail">
 
-            <h2><%= message.title %></h2>
+            <h2 class="message-detail-title">
+                <%= message.title %>
+            </h2>
 
-            <p>
+            <p class="message-content">
                 <%= message.message %>
             </p>
 
             <% if (access === "guest") { %>
 
-                <p>
-                    To see the full details, please log in to your account.
-                </p>
+                <div class="message-access guest-access">
 
-                <a href="/login">
-                    Login
-                </a>
+                    <p>
+                        To see the full details, please log in to your account.
+                    </p>
+
+                    <a
+                        class="message-action-link"
+                        href="/login"
+                    >
+                        Login
+                    </a>
+
+                </div>
 
             <% } else if (access === "non-member") { %>
 
-                <p>
-                    Author: Hidden
-                </p>
+                <div class="message-access member-access">
 
-                <p>
-                    Posted: Hidden
-                </p>
+                    <p>
+                        Author: Hidden
+                    </p>
 
-                <p>
-                    Become a member to see the author and posting time.
-                </p>
+                    <p>
+                        Posted: Hidden
+                    </p>
 
-                <form action="/users/join-club" method="POST">
-                    <button type="submit">
-                        Join Club
-                    </button>
-                </form>
+                    <p>
+                        Become a member to see the author and posting time.
+                    </p>
+
+                    <form action="/users/join-club" method="POST">
+
+                        <button type="submit">
+                            Join Club
+                        </button>
+
+                    </form>
+
+                </div>
 
             <% } else { %>
 
-                <p>
-                    Author: <%= message.username %>
-                </p>
-
-                <p>
-                    Posted:
-                    <%= message.created_at.toLocaleString() %>
-                </p>
-
-                <% if (message.updated_at) { %>
+                <div class="message-meta">
 
                     <p>
-                        Updated:
-                        <%= message.updated_at.toLocaleString() %>
+                        <strong>Author:</strong>
+                        <%= message.username %>
                     </p>
 
-                <% } %>
+                    <p>
+                        <strong>Posted:</strong>
+                        <%= message.created_at.toLocaleString() %>
+                    </p>
+
+                    <% if (message.updated_at) { %>
+
+                        <p>
+                            <strong>Updated:</strong>
+                            <%= message.updated_at.toLocaleString() %>
+                        </p>
+
+                    <% } %>
+
+                </div>
 
                 <% if (access === "admin") { %>
 
                     <form
+                        class="delete-message-form"
                         action="/messages/delete/<%= message.id %>"
                         method="POST"
                     >
@@ -84,7 +105,10 @@
 
             <% } %>
 
-            <a href="/">
+            <a
+                class="back-home-link"
+                href="/"
+            >
                 Back to Home
             </a>
 

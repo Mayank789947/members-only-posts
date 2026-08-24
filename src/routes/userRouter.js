@@ -20,7 +20,7 @@ userRouter.get(
 userRouter.post(
     "/create",
     validateCreateUser,
-    handleValidationErrors("signUp"),
+    handleValidationErrors("signupForm"),
     userController.createUser
 );
 

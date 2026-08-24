@@ -1,66 +1,169 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <%- include("partials/head") %>
 
-    <body>
+<body>
 
-        <%- include("partials/header") %>
+    <%- include("partials/header") %>
 
-                <main>
-                    <form action="/users/create" method="POST">
+    <%- include("partials/nav") %>
 
-                        <div>
-                            <label for="first_name">First Name</label>
+    <main class="form-page">
 
-                            <input type="text" id="first_name" name="first_name" value="<%= values.first_name || '' %>">
-                        </div>
+        <section class="form-container">
 
-                        <div>
-                            <label for="last_name">Last Name</label>
+            <h1 class="form-title">
+                Create Account
+            </h1>
 
-                            <input type="text" id="last_name" name="last_name" value="<%= values.last_name || '' %>">
-                        </div>
+            <form
+                class="auth-form"
+                action="/users/create"
+                method="POST"
+            >
 
-                        <div>
-                            <label for="email">Email</label>
+                <div class="form-group">
 
-                            <input type="email" id="email" name="email" value="<%= values.email || '' %>">
-                        </div>
+                    <label for="first_name">
+                        First Name
+                    </label>
 
-                        <div>
-                            <label for="password">Password</label>
+                    <input
+                        type="text"
+                        id="first_name"
+                        name="first_name"
+                        value="<%= values.first_name || '' %>"
+                    >
 
-                            <input type="password" id="password" name="password">
-                        </div>
+                    <% if (errors?.first_name) { %>
 
-                        <div>
-                            <label for="confirmPassword">Confirm Password</label>
+                        <p class="field-error">
+                            <%= errors.first_name.msg %>
+                        </p>
 
-                            <input type="password" id="confirmPassword" name="confirmPassword">
-                        </div>
+                    <% } %>
 
-                        <% if (errors) { %>
+                </div>
 
-                            <ul>
-                                <% Object.values(errors).forEach(error=> { %>
-                                    <li>
-                                        <%= error.msg %>
-                                    </li>
-                                    <% }) %>
-                            </ul>
+                <div class="form-group">
 
-                            <% } %>
+                    <label for="last_name">
+                        Last Name
+                    </label>
 
-                                <button type="submit">Create Account</button>
+                    <input
+                        type="text"
+                        id="last_name"
+                        name="last_name"
+                        value="<%= values.last_name || '' %>"
+                    >
 
-                    </form>
+                    <% if (errors?.last_name) { %>
 
-                    <a href="/login">Already have an account? Login</a>
-                </main>
+                        <p class="field-error">
+                            <%= errors.last_name.msg %>
+                        </p>
 
-                <%- include("partials/footer") %>
+                    <% } %>
 
-    </body>
+                </div>
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="<%= values.email || '' %>"
+                    >
+
+                    <% if (errors?.email) { %>
+
+                        <p class="field-error">
+                            <%= errors.email.msg %>
+                        </p>
+
+                    <% } %>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                    >
+
+                    <% if (errors?.password) { %>
+
+                        <p class="field-error">
+                            <%= errors.password.msg %>
+                        </p>
+
+                    <% } %>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                    >
+
+                    <% if (errors?.confirmPassword) { %>
+
+                        <p class="field-error">
+                            <%= errors.confirmPassword.msg %>
+                        </p>
+
+                    <% } %>
+
+                </div>
+
+                <button
+                    class="form-submit"
+                    type="submit"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+            <div class="form-footer">
+
+                <p>
+                    Already have an account?
+                </p>
+
+                <a href="/login">
+                    Login
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <%- include("partials/footer") %>
+
+</body>
 
 </html>

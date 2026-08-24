@@ -1,48 +1,119 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Login</title>
-</head>
+<%- include("partials/head") %>
 
 <body>
 
-    <h1>Login</h1>
+    <%- include("partials/header") %>
 
-    <form action="/login" method="POST">
+    <%- include("partials/nav") %>
 
-        <div>
-            <label for="email">Email</label>
+    <main class="form-page">
 
-            <input type="email" id="email" name="email" value="<%= values?.email || '' %>" required>
-        </div>
+        <section class="form-container">
 
-        <div>
-            <label for="password">Password</label>
+            <h1 class="form-title">
+                Login
+            </h1>
 
-            <input type="password" id="password" name="password" required>
-        </div>
+            <form
+                class="auth-form"
+                action="/login"
+                method="POST"
+            >
+            <% if (errors?.auth) { %>
 
-        <% if (returnTo) { %>
-            <input type="hidden" name="returnTo" value="<%= returnTo %>">
+                <p class="form-auth-error">
+                <%= errors.auth.msg %>
+                </p>
+
             <% } %>
 
-                <% if (errors) { %>
-                    <ul>
-                        <% Object.values(errors).forEach(error=> { %>
-                            <li>
-                                <%= error.msg %>
-                            </li>
-                            <% }) %>
-                    </ul>
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="<%= values?.email || '' %>"
+                        required
+                    >
+
+                    <% if (errors?.email) { %>
+
+                        <p class="field-error">
+                            <%= errors.email.msg %>
+                        </p>
+
                     <% } %>
 
-                        <button type="submit">Login</button>
+                </div>
 
-    </form>
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                    >
+
+                    <% if (errors?.password) { %>
+
+                        <p class="field-error">
+                            <%= errors.password.msg %>
+                        </p>
+
+                    <% } %>
+
+                </div>
+
+                <% if (returnTo) { %>
+
+                    <input
+                        type="hidden"
+                        name="returnTo"
+                        value="<%= returnTo %>"
+                    >
+
+                <% } %>
+
+                <button
+                    class="form-submit"
+                    type="submit"
+                >
+                    Login
+                </button>
+
+            </form>
+
+            <div class="form-footer">
+
+                <p>
+                    New to Members Only?
+                </p>
+
+                <a href="/users/create">
+                    Create an account
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <%- include("partials/footer") %>
 
 </body>
 
