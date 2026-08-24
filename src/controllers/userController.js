@@ -45,11 +45,19 @@ async function createUser(req, res, next) {
     }
 }
 
-async function updateMembershipStatus(req, res, next) {
+async function joinClub(req, res, next) {
     try {
-        const userId = req.user.id;
+        await userModel.updateMembershipStatus(true, req.user.id);
 
-        await userModel.updateMembershipStatus(true, userId);
+        return res.redirect("/users/profile");
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function leaveClub(req, res, next) {
+    try {
+        await userModel.updateMembershipStatus(false, req.user.id);
 
         return res.redirect("/users/profile");
     } catch (error) {
@@ -61,5 +69,6 @@ module.exports = {
     renderSignupForm,
     renderProfile,
     createUser,
-    updateMembershipStatus
+    joinClub,
+    leaveClub
 }

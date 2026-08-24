@@ -33,7 +33,13 @@ userRouter.get(
 userRouter.post(
     "/join-club",
     requireAuth,
-    userController.updateMembershipStatus
+    userController.joinClub
+);
+
+userRouter.post(
+    "/leave-club",
+    requireAuth,
+    userController.leaveClub
 );
 
 module.exports = userRouter;
