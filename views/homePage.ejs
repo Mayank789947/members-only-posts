@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <%- include("partials/head") %>
@@ -9,38 +10,47 @@
 
     <%- include("partials/nav") %>
 
-    <main>
+    <main class="home-page">
 
-        <h1>Messages</h1>
+        <h1 class="page-title">Messages</h1>
 
         <% if (messages.length === 0) { %>
 
-            <p>No messages have been posted yet.</p>
+            <p class="empty-message">
+                No messages have been posted yet.
+            </p>
 
         <% } else { %>
 
-            <% messages.forEach(message => { %>
+            <section class="messages-list">
 
-                <article>
+                <% messages.forEach(message => { %>
 
-                    <h2>
-                        <%= message.title %>
-                    </h2>
+                    <article class="message-card">
 
-                    <p>
-                        <%= message.message.length > 150
-                            ? message.message.slice(0, 150) + "..."
-                            : message.message
-                        %>
-                    </p>
+                        <h2 class="message-title">
+                            <%= message.title %>
+                        </h2>
 
-                    <a href="/messages/<%= message.id %>">
-                        View Message
-                    </a>
+                        <p class="message-preview">
+                            <%= message.message.length > 150
+                                ? message.message.slice(0, 150) + "..."
+                                : message.message
+                            %>
+                        </p>
 
-                </article>
+                        <a
+                            class="view-message"
+                            href="/messages/<%= message.id %>"
+                        >
+                            View Message
+                        </a>
 
-            <% }) %>
+                    </article>
+
+                <% }) %>
+
+            </section>
 
         <% } %>
 

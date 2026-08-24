@@ -1,0 +1,172 @@
+/* =========================
+   Global Reset
+========================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+    color: #222;
+}
+
+
+/* =========================
+   Common Elements
+========================= */
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================
+   Main Layout
+========================= */
+
+main {
+    width: min(100% - 2rem, 1100px);
+    margin: 2rem auto;
+}
+
+/* =========================
+   Header
+========================= */
+
+header {
+    background-color: #222;
+    color: #fff;
+    padding: 1.5rem 1rem;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+
+/* =========================
+   Navigation
+========================= */
+
+nav {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-container {
+    width: min(100% - 2rem, 1100px);
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+
+    padding: 0.75rem 0;
+}
+
+.nav-container a {
+    color: #222;
+    font-weight: 600;
+}
+
+.nav-container a:hover {
+    text-decoration: underline;
+}
+
+
+/* Logout form */
+
+.nav-container form {
+    margin: 0;
+}
+
+.nav-container button {
+    border: none;
+    background: none;
+    padding: 0;
+    color: #222;
+    font: inherit;
+    font-weight: 600;
+}
+
+.nav-container button:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   Homepage
+========================= */
+
+.page-title {
+    margin: 0 0 1.5rem;
+    text-align: center;
+}
+
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+
+/* =========================
+   Message Card
+========================= */
+
+.message-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.message-title {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.message-preview {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.view-message {
+    font-weight: 600;
+}
+
+.view-message:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   Empty State
+========================= */
+
+.empty-message {
+    text-align: center;
+}
