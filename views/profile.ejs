@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("partials/head") %>
+
+<body>
+
+    <%- include("partials/header") %>
+
+    <%- include("partials/nav") %>
+
+    <main>
+
+        <h2>Profile</h2>
+
+        <p>
+            <strong>Username:</strong>
+            <%= user.username %>
+        </p>
+
+        <p>
+            <strong>First Name:</strong>
+            <%= user.first_name %>
+        </p>
+
+        <p>
+            <strong>Last Name:</strong>
+            <%= user.last_name %>
+        </p>
+
+        <p>
+            <strong>Email:</strong>
+            <%= user.email %>
+        </p>
+
+        <p>
+            <strong>Membership:</strong>
+
+            <% if (user.membership_status) { %>
+                Member
+            <% } else { %>
+                Non-member
+            <% } %>
+        </p>
+
+        <% if (user.is_admin) { %>
+            <p>
+                <strong>Role:</strong> Admin
+            </p>
+        <% } %>
+
+        <% if (!user.membership_status && !user.is_admin) { %>
+
+            <form action="/users/join-club" method="POST">
+                <button type="submit">
+                    Join Club
+                </button>
+            </form>
+
+        <% } %>
+
+    </main>
+
+    <%- include("partials/footer") %>
+
+</body>
+
+</html>

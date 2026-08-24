@@ -3,37 +3,21 @@
 
 <%- include("partials/head") %>
 
-<body>
+    <body>
 
-    <%- include("partials/header") %>
+        <%- include("partials/header") %>
 
-    <%- include("partials/nav") %>
+            <%- include("partials/nav") %>
 
-    <main>
+                <main>
 
-        <h2>Messages</h2>
+                    <h2>Messages</h2>
 
-        <% messages.forEach(message => { %>
+                    <%- include("partials/messages") %>
+                </main>
 
-            <article>
+                <%- include("partials/footer") %>
 
-                <h3><%= message.title %></h3>
-
-                <p><%= message.message %></p>
-
-                <% if (message.username) { %>
-                    <p>Author: <%= message.username %></p>
-                    <p>Date: <%= message.created_at %></p>
-                <% } %>
-
-            </article>
-
-        <% }) %>
-
-    </main>
-
-    <%- include("partials/footer") %>
-
-</body>
+    </body>
 
 </html>
