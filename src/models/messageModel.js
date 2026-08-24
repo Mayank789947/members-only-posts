@@ -18,7 +18,7 @@ async function createNewMessage(title, message, userId) {
 async function getPublicMessages() {
     const result = await pool.query(
         ` 
-          SELECT title, message
+          SELECT id, title, message
             FROM messages
            ORDER BY messages.created_at DESC;
         `
@@ -31,6 +31,7 @@ async function getMemberMessages() {
     const result = await pool.query(
         ` 
           SELECT 
+           messages.id AS id,
            messages.title AS title,
            messages.message AS message,
            messages.created_at AS created_at,

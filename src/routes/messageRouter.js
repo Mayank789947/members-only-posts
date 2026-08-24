@@ -7,6 +7,12 @@ const requireAdmin = require("../middlewares/authMiddlewares/requireAdmin");
 
 const messageRouter = Router();
 
+messageRouter.get(
+    "/new",
+    requireAuth,
+    messageController.renderNewMessageForm
+);
+
 messageRouter.post(
     "/create",
     requireAuth,

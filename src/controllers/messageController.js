@@ -1,6 +1,17 @@
 const { matchedData } = require("express-validator");
 const messageModel = require("../models/messageModel");
 
+function renderNewMessageForm(req, res, next) {
+    try {
+        res.render("newMessage", {
+            errors: {},
+            values: {}
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
 async function createMessage(req, res, next) {
     try {
         const { title, message } = matchedData(req);
@@ -52,6 +63,7 @@ async function deleteMessage(req, res, next) {
 }
 
 module.exports = {
+    renderNewMessageForm,
     createMessage,
     getMessages,
     deleteMessage
