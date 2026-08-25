@@ -389,3 +389,76 @@ nav {
 
     font-size: 0.9rem;
 }
+
+
+/* =========================
+   Flash Messages
+========================= */
+
+.flash-message {
+    position: fixed;
+
+    top: 0;
+    left: 50%;
+
+    transform: translate(-50%, -100%);
+
+    z-index: 1000;
+
+    width: min(90%, 500px);
+
+    padding: 0.9rem 1.25rem;
+
+    border-radius: 0 0 6px 6px;
+
+    font-size: 0.95rem;
+    text-align: center;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+    animation: flash-slide-down 0.4s ease forwards;
+}
+
+.flash-message.success {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-top: none;
+}
+
+.flash-message.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-top: none;
+}
+
+@keyframes flash-slide-down {
+
+    from {
+        transform: translate(-50%, -100%);
+    }
+
+    to {
+        transform: translate(-50%, 0);
+    }
+
+}
+
+.flash-message-hide {
+    animation: flash-slide-up 0.4s ease forwards;
+}
+
+@keyframes flash-slide-up {
+
+    from {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+
+}

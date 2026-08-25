@@ -9,6 +9,7 @@ const passport = require("passport");
 const authRouter = require("./src/routes/authRouter");
 require("./src/config/passport");
 const path = require("path");
+const flashMessage = require("./src/middlewares/flashMessage");
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(session({
     }
 }));
 
+app.use(flashMessage);
 app.use(passport.initialize());
 app.use(passport.session());
 

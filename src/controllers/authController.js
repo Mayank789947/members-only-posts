@@ -11,7 +11,13 @@ function renderLoginForm(req, res, next) {
 }
 
 function login(req, res) {
+
     const returnTo = req.body.returnTo;
+
+    req.session.flash = {
+        type: "success",
+        message: "Welcome back!"
+    };
 
     if (
         returnTo &&
@@ -25,12 +31,20 @@ function login(req, res) {
 }
 
 function logout(req, res, next) {
+
     req.logout((err) => {
+
         if (err) {
             return next(err);
         }
 
+        req.session.flash = {
+            type: "success",
+            message: "You have been logged out."
+        };
+
         return res.redirect("/");
+
     });
 }
 
@@ -38,4 +52,4 @@ module.exports = {
     renderLoginForm,
     login,
     logout
-}
+};
