@@ -1,5 +1,6 @@
 const express = require("express");
 const session = require("express-session");
+const pgSession = require("connect-pg-simple")(session);
 const errorHandler = require("./src/middlewares/errorMiddlewares/errorHandler");
 const userRouter = require("./src/routes/userRouter");
 const messageRouter = require("./src/routes/messageRouter");
@@ -10,6 +11,7 @@ const authRouter = require("./src/routes/authRouter");
 require("./src/config/passport");
 const path = require("path");
 const flashMessage = require("./src/middlewares/flashMessage");
+const pool = require("./src/db/pool");
 
 const app = express();
 
@@ -21,6 +23,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(session({
+    store: new pgSession({
+        pool: pool,
+        tableName: "session"
+    }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
