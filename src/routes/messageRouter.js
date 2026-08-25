@@ -1,9 +1,10 @@
 const { Router } = require("express");
 const messageController = require("../controllers/messageController");
-const validateCreateMessage = require("../validators/messageValidator");
 const handleValidationErrors = require("../middlewares/errorMiddlewares/handleValidationError");
 const requireAuth = require("../middlewares/authMiddlewares/requireAuth");
 const requireAdmin = require("../middlewares/authMiddlewares/requireAdmin");
+const requireMessageOwnerOrAdmin = require("../middlewares/authMiddlewares/requireMessageOwnerOrAdmin");
+const validateMessage = require("../validators/messageValidator");
 
 const messageRouter = Router();
 
@@ -21,7 +22,7 @@ messageRouter.get(
 messageRouter.post(
     "/create",
     requireAuth,
-    validateCreateMessage,
+    validateMessage,
     handleValidationErrors("newMessage"),
     messageController.createMessage
 );
@@ -31,6 +32,21 @@ messageRouter.post(
     requireAuth,
     requireAdmin,
     messageController.deleteMessage
+);
+
+messageRouter.get(
+    "/:messageId/edit",
+    requireAuth,
+    requireMessageOwnerOrAdmin,
+    messageController.renderEditMessageForm
+);
+
+messageRouter.post(
+    "/:messageId/edit",
+    requireAuth,
+    requireMessageOwnerOrAdmin,
+    validateMessage,
+    messageController.updateMessage
 );
 
 module.exports = messageRouter;

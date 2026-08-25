@@ -13,6 +13,21 @@ function renderNewMessageForm(req, res, next) {
     }
 }
 
+function renderEditMessageForm(req, res, next) {
+    try {
+        res.render("editMessage", {
+            message: req.message,
+            errors: {},
+            values: {
+                title: req.message.title,
+                message: req.message.message
+            }
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
 async function createMessage(req, res, next) {
     try {
         const { title, message } = matchedData(req);
@@ -67,6 +82,8 @@ async function getMessage(req, res, next) {
             req.session.returnTo = req.originalUrl;
         } else if (req.user.is_admin) {
             access = "admin";
+        } else if (req.user.id === message.user_id) {
+            access = "owner";
         } else if (req.user.membership_status) {
             access = "member";
         } else {
@@ -77,6 +94,34 @@ async function getMessage(req, res, next) {
             message,
             access
         });
+
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function updateMessage(req, res, next) {
+    try {
+        const messageId = req.params.messageId;
+
+        const { title, message } = matchedData(req);
+
+        const updatedMessage = await messageModel.updateMessage(
+            messageId,
+            title,
+            message
+        );
+
+        if (!updatedMessage) {
+            throw new NotFoundError("Message not found");
+        }
+
+        req.session.flash = {
+            type: "success",
+            message: "Message updated successfully!"
+        };
+
+        return res.redirect(`/messages/${messageId}`);
 
     } catch (error) {
         next(error);
@@ -102,8 +147,10 @@ async function deleteMessage(req, res, next) {
 
 module.exports = {
     renderNewMessageForm,
+    renderEditMessageForm,
     createMessage,
     getMessages,
     getMessage,
+    updateMessage,
     deleteMessage
 }

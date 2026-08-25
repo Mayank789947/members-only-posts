@@ -53,6 +53,7 @@ async function getMessageById(messageId) {
           messages.id,
           messages.title,
           messages.message,
+          messages.user_id,
           messages.created_at,
           messages.updated_at,
           users.username
@@ -62,6 +63,22 @@ async function getMessageById(messageId) {
         WHERE messages.id = $1;
         `,
         [messageId]
+    );
+
+    return result.rows[0] || null;
+}
+
+async function updateMessage(messageId, title, message) {
+    const result = await pool.query(
+        `
+          UPDATE messages
+             SET title = $1,
+                 message = $2,
+                 updated_at = NOW()
+           WHERE id = $3
+           RETURNING id, title, message, user_id, created_at, updated_at;
+        `,
+        [title, message, messageId]
     );
 
     return result.rows[0] || null;
@@ -85,5 +102,6 @@ module.exports = {
     getPublicMessages,
     getMemberMessages,
     getMessageById,
+    updateMessage,
     deleteMessage
 }

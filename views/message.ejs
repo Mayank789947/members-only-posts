@@ -6,9 +6,9 @@
 
 <body>
 
-    <%- include("partials/header") %>
+<%- include("partials/header") %>
 
-    <%- include("partials/nav") %>
+<%- include("partials/nav") %>
 
     <main class="message-page">
 
@@ -59,12 +59,14 @@
                         action="/users/join-club"
                         method="POST"
                     >
+
                         <button
                             class="message-action-button"
                             type="submit"
                         >
                             Join Club
                         </button>
+
                     </form>
 
                 </div>
@@ -94,20 +96,38 @@
 
                 </div>
 
-                <% if (access === "admin") { %>
 
-                    <form
-                        class="delete-message-form"
-                        action="/messages/delete/<%= message.id %>"
-                        method="POST"
-                    >
-                        <button
-                            class="delete-message-button"
-                            type="submit"
+                <% if (access === "admin" || access === "owner") { %>
+
+                    <div class="message-actions">
+
+                        <a
+                            class="message-action-link"
+                            href="/messages/<%= message.id %>/edit"
                         >
-                            Delete Message
-                        </button>
-                    </form>
+                            Edit Message
+                        </a>
+
+                        <% if (access === "admin") { %>
+
+                            <form
+                                class="delete-message-form"
+                                action="/messages/delete/<%= message.id %>"
+                                method="POST"
+                            >
+
+                                <button
+                                    class="delete-message-button"
+                                    type="submit"
+                                >
+                                    Delete Message
+                                </button>
+
+                            </form>
+
+                        <% } %>
+
+                    </div>
 
                 <% } %>
 
@@ -124,7 +144,7 @@
 
     </main>
 
-    <%- include("partials/footer") %>
+<%- include("partials/footer") %>
 
 </body>
 

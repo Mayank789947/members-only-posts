@@ -1,6 +1,6 @@
 const { body } = require("express-validator");
 
-const validateCreateMessage = [
+const validateMessage = [
     body("title")
     .trim()
     .notEmpty()
@@ -15,4 +15,4 @@ const validateCreateMessage = [
     .withMessage("Message is required.")
 ];
 
-module.exports = validateCreateMessage;
+module.exports = validateMessage;
