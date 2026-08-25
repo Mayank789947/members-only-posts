@@ -89,9 +89,14 @@ async function deleteMessage(req, res, next) {
 
         await messageModel.deleteMessage(messageId);
 
+        req.session.flash = {
+            type: "success",
+            message: "Message deleted successfully!"
+        };
+
         return res.redirect("/");
     } catch (error) {
-        next(error)
+        next(error);
     }
 }
 
