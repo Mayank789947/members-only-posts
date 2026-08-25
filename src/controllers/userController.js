@@ -49,6 +49,11 @@ async function joinClub(req, res, next) {
     try {
         await userModel.updateMembershipStatus(true, req.user.id);
 
+        req.session.flash = {
+            type: "success",
+            message: "You joined the club!"
+        };
+
         return res.redirect("/users/profile");
     } catch (error) {
         next(error);
@@ -58,6 +63,11 @@ async function joinClub(req, res, next) {
 async function leaveClub(req, res, next) {
     try {
         await userModel.updateMembershipStatus(false, req.user.id);
+
+        req.session.flash = {
+            type: "success",
+            message: "You left the club!"
+        };
 
         return res.redirect("/users/profile");
     } catch (error) {
