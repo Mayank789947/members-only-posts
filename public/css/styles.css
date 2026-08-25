@@ -1,3 +1,49 @@
+:root {
+    /* =========================
+       Color System
+    ========================= */
+
+    --color-background: #f4eee6;
+    --color-surface: #fffaf4;
+    --color-surface-soft: #f8f1e8;
+
+    --color-text: #2d2522;
+    --color-text-secondary: #5f514b;
+    --color-text-muted: #85766f;
+
+    --color-heading: #4f1d2c;
+
+    --color-border: #ded1c4;
+    --color-border-light: #ebe1d6;
+
+    --color-primary: #6f263d;
+    --color-primary-hover: #581d30;
+    --color-primary-soft: #f3e6ea;
+
+    --color-accent: #b18445;
+    --color-accent-hover: #956d35;
+    --color-accent-soft: #f5ead8;
+
+    --color-danger: #9f2f2f;
+    --color-danger-hover: #812424;
+    --color-danger-soft: #f8e8e5;
+
+    --color-success: #397052;
+    --color-success-soft: #e9f3ec;
+
+    --color-white: #ffffff;
+
+    --shadow-card:
+        0 4px 12px rgba(72, 48, 38, 0.07);
+
+    --shadow-card-hover:
+        0 9px 22px rgba(72, 48, 38, 0.12);
+
+    --shadow-button:
+        0 4px 10px rgba(111, 38, 61, 0.20);
+}
+
+
 /* =========================
    Global Reset
 ========================= */
@@ -23,8 +69,8 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
 
-    background-color: #f5f5f5;
-    color: #222;
+    background-color: var(--color-background);
+    color: var(--color-text);
 }
 
 
@@ -33,8 +79,13 @@ body {
 ========================= */
 
 a {
-    color: inherit;
+    color: var(--color-primary);
+
     text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-primary-hover);
 }
 
 button,
@@ -62,19 +113,38 @@ main {
 
 
 /* =========================
+   Headings
+========================= */
+
+h1,
+h2,
+h3 {
+    color: var(--color-heading);
+}
+
+
+/* =========================
    Header
 ========================= */
 
 .site-header {
-    padding: 2rem 1rem 1.25rem;
+    padding: 2.5rem 1rem 1.5rem;
 
     text-align: center;
+}
+
+.site-header > p {
+    margin: 0.3rem 0 0;
 }
 
 .site-title {
     margin: 0;
 
-    font-size: 2rem;
+    color: var(--color-primary);
+
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
     line-height: 1.2;
 }
 
@@ -93,7 +163,7 @@ main {
     margin: 0 auto 2rem;
     padding: 0.75rem 0;
 
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .nav-main,
@@ -108,24 +178,109 @@ main {
     margin-left: auto;
 }
 
-.site-nav a {
+
+/* =========================
+   Main Navigation Links
+========================= */
+
+.nav-main a {
     padding: 0.5rem 0.75rem;
 
-    color: inherit;
+    color: var(--color-text-secondary);
 
     font-weight: 500;
 
-    border-radius: 5px;
+    border-radius: 6px;
 
     transition:
         background-color 0.2s ease,
+        color 0.2s ease,
         transform 0.2s ease;
 }
 
-.site-nav a:hover {
-    background-color: #f0f0f0;
+.nav-main a:hover {
+    background-color: var(--color-primary-soft);
+
+    color: var(--color-primary);
 
     transform: translateY(-1px);
+}
+
+
+/* =========================
+   Authentication Navigation
+========================= */
+
+.nav-auth a,
+.nav-auth button {
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* =========================
+   Login
+========================= */
+
+.nav-login {
+    display: inline-block;
+
+    padding: 0.5rem 0.75rem;
+
+    border: 1px solid var(--color-primary);
+    border-radius: 6px;
+
+    background-color: transparent;
+
+    color: var(--color-primary) !important;
+
+    font-weight: 600;
+}
+
+.nav-login:hover {
+    background-color: var(--color-primary-soft);
+
+    color: var(--color-primary-hover) !important;
+
+    transform: translateY(-1px);
+}
+
+.nav-login:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+   Sign Up
+========================= */
+
+.nav-signup {
+    display: inline-block;
+
+    padding: 0.5rem 0.75rem;
+
+    border-radius: 6px;
+
+    background-color: var(--color-primary);
+
+    color: var(--color-white) !important;
+
+    font-weight: 600;
+}
+
+.nav-signup:hover {
+    background-color: var(--color-primary-hover);
+
+    color: var(--color-white) !important;
+
+    transform: translateY(-1px);
+}
+
+.nav-signup:active {
+    transform: translateY(0);
 }
 
 
@@ -142,11 +297,12 @@ main {
 
     padding: 0.5rem 0.75rem;
 
-    border: 1px solid #999;
-    border-radius: 5px;
+    border: 1px solid var(--color-danger);
+    border-radius: 6px;
 
-    background-color: #fff;
-    color: #a33;
+    background-color: transparent;
+
+    color: var(--color-danger);
 
     font: inherit;
     font-weight: 600;
@@ -157,11 +313,17 @@ main {
 
     transition:
         background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
         transform 0.2s ease;
 }
 
 .site-nav button.nav-logout:hover {
-    background-color: #f9eeee;
+    background-color: var(--color-danger-soft);
+
+    border-color: var(--color-danger-hover);
+
+    color: var(--color-danger-hover);
 
     transform: translateY(-1px);
 }
@@ -170,47 +332,6 @@ main {
     transform: translateY(0);
 }
 
-/* =========================
-   Authentication Actions
-========================= */
-
-.nav-login,
-.nav-signup,
-.nav-logout {
-    border-radius: 5px;
-
-    font-weight: 600;
-}
-
-
-/* =========================
-   Login
-========================= */
-
-.nav-login {
-    border: 1px solid #999;
-}
-
-.nav-login:hover {
-    background-color: #f0f0f0;
-}
-
-
-/* =========================
-   Sign Up
-========================= */
-
-.nav-signup {
-    background-color: #222;
-
-    color: #fff !important;
-}
-
-.nav-signup:hover {
-    background-color: #444;
-}
-
-
 
 /* =========================
    Homepage
@@ -218,6 +339,8 @@ main {
 
 .page-title {
     margin: 0 0 2rem;
+
+    color: var(--color-heading);
 
     text-align: center;
 
@@ -243,26 +366,32 @@ main {
 .message-card {
     padding: 1.5rem;
 
-    background-color: #fff;
+    background-color: var(--color-surface);
 
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 1px solid var(--color-border);
 
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    border-radius: 10px;
+
+    box-shadow: var(--shadow-card);
 
     transition:
         transform 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .message-card:hover {
     transform: translateY(-2px);
 
-    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
+    border-color: #cdb8a7;
+
+    box-shadow: var(--shadow-card-hover);
 }
 
 .message-title {
     margin: 0 0 0.75rem;
+
+    color: var(--color-heading);
 
     line-height: 1.3;
 }
@@ -270,16 +399,22 @@ main {
 .message-preview {
     margin: 0 0 1.25rem;
 
+    color: var(--color-text-secondary);
+
     line-height: 1.6;
 
     overflow-wrap: anywhere;
 }
 
 .view-message {
+    color: var(--color-primary);
+
     font-weight: 600;
 }
 
 .view-message:hover {
+    color: var(--color-primary-hover);
+
     text-decoration: underline;
 }
 
@@ -292,6 +427,8 @@ main {
     max-width: 600px;
 
     margin: 3rem auto;
+
+    color: var(--color-text-muted);
 
     text-align: center;
 
@@ -314,21 +451,26 @@ main {
     margin: 0 auto;
     padding: 2rem;
 
-    background-color: #fff;
+    background-color: var(--color-surface);
 
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 1px solid var(--color-border);
 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+
+    box-shadow: var(--shadow-card);
 }
 
 .message-detail-title {
     margin-top: 0;
     margin-bottom: 1.5rem;
+
+    color: var(--color-heading);
 }
 
 .message-content {
     margin: 0;
+
+    color: var(--color-text-secondary);
 
     line-height: 1.7;
 
@@ -347,11 +489,13 @@ main {
 
     padding-top: 1rem;
 
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--color-border);
 }
 
 .message-meta p {
     margin: 0.4rem 0;
+
+    color: var(--color-text-muted);
 }
 
 
@@ -364,11 +508,13 @@ main {
 
     padding-top: 1rem;
 
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--color-border);
 }
 
 .message-access p {
     margin: 0.5rem 0;
+
+    color: var(--color-text-secondary);
 }
 
 
@@ -384,7 +530,7 @@ main {
 
     padding: 0.65rem 1.25rem;
 
-    border-radius: 5px;
+    border-radius: 6px;
 
     font: inherit;
     font-weight: 600;
@@ -397,29 +543,34 @@ main {
 
     transition:
         background-color 0.2s ease,
+        color 0.2s ease,
         transform 0.2s ease,
         box-shadow 0.2s ease;
 }
 
 .message-action-link {
-    color: #fff;
+    color: var(--color-white);
 
-    background-color: #333;
+    background-color: var(--color-primary);
 }
 
 .message-action-button {
     border: none;
 
-    color: #fff;
+    color: var(--color-white);
 
-    background-color: #333;
+    background-color: var(--color-primary);
 }
 
 .message-action-link:hover,
 .message-action-button:hover {
-    background-color: #444;
+    background-color: var(--color-primary-hover);
+
+    color: var(--color-white);
 
     transform: translateY(-1px);
+
+    box-shadow: var(--shadow-button);
 }
 
 .message-action-link:active,
@@ -442,10 +593,11 @@ main {
     padding: 0.65rem 1.25rem;
 
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
 
-    color: #fff;
-    background-color: #b42318;
+    color: var(--color-white);
+
+    background-color: var(--color-danger);
 
     font: inherit;
     font-weight: 600;
@@ -461,9 +613,12 @@ main {
 }
 
 .delete-message-button:hover {
-    background-color: #922018;
+    background-color: var(--color-danger-hover);
 
     transform: translateY(-1px);
+
+    box-shadow:
+        0 4px 10px rgba(159, 47, 47, 0.18);
 }
 
 .delete-message-button:active {
@@ -480,12 +635,14 @@ main {
 
     margin-top: 2rem;
 
-    color: inherit;
+    color: var(--color-primary);
 
     font-weight: 600;
 }
 
 .back-home-link:hover {
+    color: var(--color-primary-hover);
+
     text-decoration: underline;
 }
 
@@ -505,15 +662,20 @@ main {
 
     padding: 2rem;
 
-    background-color: #fff;
+    background-color: var(--color-surface);
 
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 1px solid var(--color-border);
+
+    border-radius: 10px;
+
+    box-shadow: var(--shadow-card);
 }
 
 .form-title {
     margin-top: 0;
     margin-bottom: 1.5rem;
+
+    color: var(--color-heading);
 
     text-align: center;
 }
@@ -526,13 +688,19 @@ main {
 
 .form-footer p {
     margin: 0 0 0.4rem;
+
+    color: var(--color-text-muted);
 }
 
 .form-footer a {
+    color: var(--color-primary);
+
     font-weight: 600;
 }
 
 .form-footer a:hover {
+    color: var(--color-primary-hover);
+
     text-decoration: underline;
 }
 
@@ -556,6 +724,8 @@ main {
 }
 
 .form-group label {
+    color: var(--color-text);
+
     font-weight: 600;
 }
 
@@ -565,16 +735,32 @@ main {
 
     padding: 0.65rem 0.75rem;
 
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid var(--color-border);
 
-    background-color: #fff;
+    border-radius: 6px;
+
+    background-color: var(--color-white);
+
+    color: var(--color-text);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--color-text-muted);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-    outline: 2px solid #222;
-    outline-offset: 1px;
+    outline: none;
+
+    border-color: var(--color-primary);
+
+    box-shadow:
+        0 0 0 3px rgba(111, 38, 61, 0.12);
 }
 
 .form-group textarea {
@@ -592,6 +778,8 @@ main {
     margin: 0;
 
     padding-left: 1.25rem;
+
+    color: var(--color-danger);
 }
 
 
@@ -606,10 +794,12 @@ main {
     padding: 0.65rem 1.25rem;
 
     border: none;
-    border-radius: 5px;
 
-    background-color: #222;
-    color: #fff;
+    border-radius: 6px;
+
+    background-color: var(--color-primary);
+
+    color: var(--color-white);
 
     font: inherit;
     font-weight: 600;
@@ -626,9 +816,13 @@ main {
 
 .form-submit:hover,
 .profile-button:hover {
-    background-color: #444;
+    background-color: var(--color-primary-hover);
+
+    color: var(--color-white);
 
     transform: translateY(-1px);
+
+    box-shadow: var(--shadow-button);
 }
 
 .form-submit:active,
@@ -644,9 +838,10 @@ main {
 .field-error {
     margin: 0;
 
-    color: #d32f2f;
+    color: var(--color-danger);
 
     font-size: 0.9rem;
+
     line-height: 1.4;
 }
 
@@ -655,11 +850,13 @@ main {
 
     padding: 0.75rem;
 
-    border: 1px solid #d32f2f;
-    border-radius: 4px;
+    border: 1px solid #e0b2ae;
 
-    color: #d32f2f;
-    background-color: #fff5f5;
+    border-radius: 6px;
+
+    color: var(--color-danger);
+
+    background-color: var(--color-danger-soft);
 
     font-size: 0.9rem;
 }
@@ -683,32 +880,36 @@ main {
 
     transform: translate(-50%, -100%);
 
-    border-radius: 0 0 6px 6px;
+    border-radius: 0 0 7px 7px;
 
     font-size: 0.95rem;
 
     text-align: center;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    box-shadow:
+        0 5px 16px rgba(72, 48, 38, 0.14);
 
-    animation: flash-slide-down 0.4s ease forwards;
+    animation:
+        flash-slide-down 0.4s ease forwards;
 }
 
 .flash-message.success {
-    color: #155724;
+    color: var(--color-success);
 
-    background-color: #d4edda;
+    background-color: var(--color-success-soft);
 
-    border: 1px solid #c3e6cb;
+    border: 1px solid #b9d8c3;
+
     border-top: none;
 }
 
 .flash-message.error {
-    color: #721c24;
+    color: var(--color-danger);
 
-    background-color: #f8d7da;
+    background-color: var(--color-danger-soft);
 
-    border: 1px solid #f5c6cb;
+    border: 1px solid #e0b2ae;
+
     border-top: none;
 }
 
@@ -725,7 +926,8 @@ main {
 }
 
 .flash-message-hide {
-    animation: flash-slide-up 0.4s ease forwards;
+    animation:
+        flash-slide-up 0.4s ease forwards;
 }
 
 @keyframes flash-slide-up {
@@ -759,17 +961,20 @@ main {
 
     padding: 2rem;
 
-    background-color: #fff;
+    background-color: var(--color-surface);
 
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 1px solid var(--color-border);
 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+
+    box-shadow: var(--shadow-card);
 }
 
 .profile-title {
     margin-top: 0;
     margin-bottom: 2rem;
+
+    color: var(--color-heading);
 
     text-align: center;
 }
@@ -789,14 +994,18 @@ main {
 
     padding-bottom: 0.75rem;
 
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--color-border-light);
 }
 
 .profile-label {
+    color: var(--color-text);
+
     font-weight: 600;
 }
 
 .profile-value {
+    color: var(--color-text-secondary);
+
     text-align: right;
 
     overflow-wrap: anywhere;
@@ -812,7 +1021,11 @@ main {
 .admin-message {
     margin: 0;
 
+    color: var(--color-primary);
+
     text-align: center;
+
+    font-weight: 600;
 }
 
 
@@ -824,13 +1037,14 @@ main {
     max-width: 900px;
 
     margin: 3rem auto 0;
+
     padding: 1.5rem 1rem;
 
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--color-border);
 
     text-align: center;
 
-    color: #666;
+    color: var(--color-text-muted);
 }
 
 .site-footer p {
