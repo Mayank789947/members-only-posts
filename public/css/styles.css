@@ -13,9 +13,16 @@ html {
 }
 
 body {
+    min-height: 100vh;
+
     margin: 0;
+
+    display: flex;
+    flex-direction: column;
+
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
+
     background-color: #f5f5f5;
     color: #222;
 }
@@ -47,23 +54,28 @@ button {
 
 main {
     width: min(100% - 2rem, 1100px);
+
     margin: 2rem auto;
+
+    flex: 1;
 }
+
 
 /* =========================
    Header
 ========================= */
 
-header {
-    background-color: #222;
-    color: #fff;
-    padding: 1.5rem 1rem;
+.site-header {
+    padding: 2rem 1rem 1.25rem;
+
     text-align: center;
 }
 
-header h1 {
+.site-title {
     margin: 0;
+
     font-size: 2rem;
+    line-height: 1.2;
 }
 
 
@@ -71,65 +83,156 @@ header h1 {
    Navigation
 ========================= */
 
-nav {
-    background-color: #fff;
+.site-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: min(100% - 2rem, 1100px);
+
+    margin: 0 auto 2rem;
+    padding: 0.75rem 0;
+
     border-bottom: 1px solid #ddd;
 }
 
-.nav-container {
-    width: min(100% - 2rem, 1100px);
-    margin: 0 auto;
-
+.nav-main,
+.nav-auth {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 1.25rem;
 
-    padding: 0.75rem 0;
+    gap: 0.75rem;
 }
 
-.nav-container a {
-    color: #222;
-    font-weight: 600;
+.nav-auth {
+    margin-left: auto;
 }
 
-.nav-container a:hover {
-    text-decoration: underline;
+.site-nav a {
+    padding: 0.5rem 0.75rem;
+
+    color: inherit;
+
+    font-weight: 500;
+
+    border-radius: 5px;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.site-nav a:hover {
+    background-color: #f0f0f0;
+
+    transform: translateY(-1px);
 }
 
 
-/* Logout form */
+/* =========================
+   Navigation Logout
+========================= */
 
-.nav-container form {
+.site-nav form {
     margin: 0;
 }
 
-.nav-container button {
-    border: none;
-    background: none;
-    padding: 0;
-    color: #222;
+.site-nav button.nav-logout {
+    display: inline-block;
+
+    padding: 0.5rem 0.75rem;
+
+    border: 1px solid #999;
+    border-radius: 5px;
+
+    background-color: #fff;
+    color: #a33;
+
     font: inherit;
+    font-weight: 600;
+
+    line-height: 1.6;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.site-nav button.nav-logout:hover {
+    background-color: #f9eeee;
+
+    transform: translateY(-1px);
+}
+
+.site-nav button.nav-logout:active {
+    transform: translateY(0);
+}
+
+/* =========================
+   Authentication Actions
+========================= */
+
+.nav-login,
+.nav-signup,
+.nav-logout {
+    border-radius: 5px;
+
     font-weight: 600;
 }
 
-.nav-container button:hover {
-    text-decoration: underline;
+
+/* =========================
+   Login
+========================= */
+
+.nav-login {
+    border: 1px solid #999;
 }
+
+.nav-login:hover {
+    background-color: #f0f0f0;
+}
+
+
+/* =========================
+   Sign Up
+========================= */
+
+.nav-signup {
+    background-color: #222;
+
+    color: #fff !important;
+}
+
+.nav-signup:hover {
+    background-color: #444;
+}
+
+
 
 /* =========================
    Homepage
 ========================= */
 
 .page-title {
-    margin: 0 0 1.5rem;
+    margin: 0 0 2rem;
+
     text-align: center;
+
+    line-height: 1.2;
 }
 
 .messages-list {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+
+    gap: 1.25rem;
+
+    max-width: 800px;
+
+    margin: 0 auto;
 }
 
 
@@ -138,20 +241,38 @@ nav {
 ========================= */
 
 .message-card {
+    padding: 1.5rem;
+
     background-color: #fff;
+
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 1.5rem;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.message-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
 }
 
 .message-title {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
+    margin: 0 0 0.75rem;
+
+    line-height: 1.3;
 }
 
 .message-preview {
-    margin-top: 0;
-    margin-bottom: 1rem;
+    margin: 0 0 1.25rem;
+
+    line-height: 1.6;
+
+    overflow-wrap: anywhere;
 }
 
 .view-message {
@@ -168,23 +289,37 @@ nav {
 ========================= */
 
 .empty-message {
+    max-width: 600px;
+
+    margin: 3rem auto;
+
     text-align: center;
+
+    line-height: 1.6;
 }
 
 
 /* =========================
-   Message Detail Page
+   Message Page
 ========================= */
 
+.message-page {
+    display: flex;
+    justify-content: center;
+}
+
 .message-detail {
-    max-width: 800px;
+    width: min(100%, 800px);
+
     margin: 0 auto;
+    padding: 2rem;
 
     background-color: #fff;
+
     border: 1px solid #ddd;
     border-radius: 8px;
 
-    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .message-detail-title {
@@ -193,8 +328,13 @@ nav {
 }
 
 .message-content {
-    margin: 0 0 2rem;
+    margin: 0;
+
+    line-height: 1.7;
+
     white-space: normal;
+
+    overflow-wrap: anywhere;
 }
 
 
@@ -203,8 +343,11 @@ nav {
 ========================= */
 
 .message-meta {
-    border-top: 1px solid #ddd;
+    margin-top: 2rem;
+
     padding-top: 1rem;
+
+    border-top: 1px solid #ddd;
 }
 
 .message-meta p {
@@ -217,9 +360,11 @@ nav {
 ========================= */
 
 .message-access {
-    border-top: 1px solid #ddd;
+    margin-top: 2rem;
+
     padding-top: 1rem;
-    margin-top: 1.5rem;
+
+    border-top: 1px solid #ddd;
 }
 
 .message-access p {
@@ -232,22 +377,116 @@ nav {
 ========================= */
 
 .message-action-link,
-.back-home-link {
+.message-action-button {
+    display: inline-block;
+
+    margin-top: 0.75rem;
+
+    padding: 0.65rem 1.25rem;
+
+    border-radius: 5px;
+
+    font: inherit;
     font-weight: 600;
+
+    line-height: 1.4;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.message-action-link {
+    color: #fff;
+
+    background-color: #333;
+}
+
+.message-action-button {
+    border: none;
+
+    color: #fff;
+
+    background-color: #333;
 }
 
 .message-action-link:hover,
-.back-home-link:hover {
-    text-decoration: underline;
+.message-action-button:hover {
+    background-color: #444;
+
+    transform: translateY(-1px);
 }
+
+.message-action-link:active,
+.message-action-button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+   Delete Message
+========================= */
 
 .delete-message-form {
     margin-top: 1.5rem;
 }
 
+.delete-message-button {
+    display: inline-block;
+
+    padding: 0.65rem 1.25rem;
+
+    border: none;
+    border-radius: 5px;
+
+    color: #fff;
+    background-color: #b42318;
+
+    font: inherit;
+    font-weight: 600;
+
+    line-height: 1.4;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.delete-message-button:hover {
+    background-color: #922018;
+
+    transform: translateY(-1px);
+}
+
+.delete-message-button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+   Back to Home
+========================= */
+
 .back-home-link {
     display: inline-block;
+
     margin-top: 2rem;
+
+    color: inherit;
+
+    font-weight: 600;
+}
+
+.back-home-link:hover {
+    text-decoration: underline;
 }
 
 
@@ -264,21 +503,24 @@ nav {
     width: 100%;
     max-width: 500px;
 
+    padding: 2rem;
+
     background-color: #fff;
+
     border: 1px solid #ddd;
     border-radius: 8px;
-
-    padding: 2rem;
 }
 
 .form-title {
     margin-top: 0;
     margin-bottom: 1.5rem;
+
     text-align: center;
 }
 
 .form-footer {
     margin-top: 1.5rem;
+
     text-align: center;
 }
 
@@ -302,12 +544,14 @@ nav {
 .auth-form {
     display: flex;
     flex-direction: column;
+
     gap: 1.25rem;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
+
     gap: 0.4rem;
 }
 
@@ -318,6 +562,7 @@ nav {
 .form-group input,
 .form-group textarea {
     width: 100%;
+
     padding: 0.65rem 0.75rem;
 
     border: 1px solid #ccc;
@@ -332,6 +577,12 @@ nav {
     outline-offset: 1px;
 }
 
+.form-group textarea {
+    resize: vertical;
+
+    min-height: 150px;
+}
+
 
 /* =========================
    Form Errors
@@ -339,28 +590,50 @@ nav {
 
 .form-errors {
     margin: 0;
+
     padding-left: 1.25rem;
 }
 
 
 /* =========================
-   Form Button
+   Form Buttons
 ========================= */
 
-.form-submit {
-    padding: 0.7rem 1rem;
+.form-submit,
+.profile-button {
+    display: inline-block;
+
+    padding: 0.65rem 1.25rem;
 
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
 
     background-color: #222;
     color: #fff;
 
+    font: inherit;
     font-weight: 600;
+
+    line-height: 1.4;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-.form-submit:hover {
+.form-submit:hover,
+.profile-button:hover {
     background-color: #444;
+
+    transform: translateY(-1px);
+}
+
+.form-submit:active,
+.profile-button:active {
+    transform: translateY(0);
 }
 
 
@@ -379,6 +652,7 @@ nav {
 
 .form-auth-error {
     margin: 0;
+
     padding: 0.75rem;
 
     border: 1px solid #d32f2f;
@@ -401,17 +675,18 @@ nav {
     top: 0;
     left: 50%;
 
-    transform: translate(-50%, -100%);
-
     z-index: 1000;
 
     width: min(90%, 500px);
 
     padding: 0.9rem 1.25rem;
 
+    transform: translate(-50%, -100%);
+
     border-radius: 0 0 6px 6px;
 
     font-size: 0.95rem;
+
     text-align: center;
 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
@@ -421,14 +696,18 @@ nav {
 
 .flash-message.success {
     color: #155724;
+
     background-color: #d4edda;
+
     border: 1px solid #c3e6cb;
     border-top: none;
 }
 
 .flash-message.error {
     color: #721c24;
+
     background-color: #f8d7da;
+
     border: 1px solid #f5c6cb;
     border-top: none;
 }
@@ -453,12 +732,215 @@ nav {
 
     from {
         transform: translate(-50%, 0);
+
         opacity: 1;
     }
 
     to {
         transform: translate(-50%, -100%);
+
         opacity: 0;
+    }
+
+}
+
+
+/* =========================
+   Profile Page
+========================= */
+
+.profile-page {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-container {
+    width: min(100%, 600px);
+
+    padding: 2rem;
+
+    background-color: #fff;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.profile-title {
+    margin-top: 0;
+    margin-bottom: 2rem;
+
+    text-align: center;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+}
+
+.profile-field {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    padding-bottom: 0.75rem;
+
+    border-bottom: 1px solid #eee;
+}
+
+.profile-label {
+    font-weight: 600;
+}
+
+.profile-value {
+    text-align: right;
+
+    overflow-wrap: anywhere;
+}
+
+.profile-actions {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 2rem;
+}
+
+.admin-message {
+    margin: 0;
+
+    text-align: center;
+}
+
+
+/* =========================
+   Footer
+========================= */
+
+.site-footer {
+    max-width: 900px;
+
+    margin: 3rem auto 0;
+    padding: 1.5rem 1rem;
+
+    border-top: 1px solid #ddd;
+
+    text-align: center;
+
+    color: #666;
+}
+
+.site-footer p {
+    margin: 0;
+
+    font-size: 0.9rem;
+}
+
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 600px) {
+
+    /* Header */
+
+    .site-header {
+        padding-top: 1.5rem;
+    }
+
+    .site-title {
+        font-size: 1.75rem;
+    }
+
+
+    /* Navigation */
+
+    .site-nav {
+        flex-direction: column;
+        align-items: center;
+
+        width: calc(100% - 1.25rem);
+
+        gap: 0.75rem;
+
+        padding: 0.5rem 0;
+    }
+
+    .nav-main,
+    .nav-auth {
+        justify-content: center;
+        align-items: center;
+
+        flex-wrap: wrap;
+
+        width: 100%;
+    }
+
+    .site-nav a,
+    .site-nav button {
+        padding: 0.45rem 0.6rem;
+
+        font-size: 0.95rem;
+    }
+
+
+    /* Main */
+
+    main {
+        width: calc(100% - 1.25rem);
+
+        margin-top: 1.5rem;
+    }
+
+
+    /* Message Cards */
+
+    .message-card {
+        padding: 1.25rem;
+    }
+
+
+    /* Message Detail */
+
+    .message-detail {
+        padding: 1.25rem;
+    }
+
+
+    /* Forms */
+
+    .form-container {
+        padding: 1.25rem;
+    }
+
+
+    /* Profile */
+
+    .profile-container {
+        padding: 1.25rem;
+    }
+
+    .profile-field {
+        flex-direction: column;
+
+        gap: 0.25rem;
+    }
+
+    .profile-value {
+        text-align: left;
+    }
+
+
+    /* Footer */
+
+    .site-footer {
+        margin-top: 2rem;
+
+        padding: 1.25rem 1rem;
     }
 
 }

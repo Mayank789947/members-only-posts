@@ -10,76 +10,139 @@
 
     <%- include("partials/nav") %>
 
-    <main>
+    <main class="profile-page">
 
-        <h2>Profile</h2>
+        <section class="profile-container">
 
-        <p>
-            <strong>Username:</strong>
-            <%= user.username %>
-        </p>
+            <h1 class="profile-title">
+                Profile
+            </h1>
 
-        <p>
-            <strong>First Name:</strong>
-            <%= user.first_name %>
-        </p>
+            <div class="profile-info">
 
-        <p>
-            <strong>Last Name:</strong>
-            <%= user.last_name %>
-        </p>
+                <div class="profile-field">
 
-        <p>
-            <strong>Email:</strong>
-            <%= user.email %>
-        </p>
+                    <span class="profile-label">
+                        Username
+                    </span>
 
-        <p>
-            <strong>Membership:</strong>
+                    <span class="profile-value">
+                        <%= user.username %>
+                    </span>
 
-            <% if (user.membership_status) { %>
-                Member
-            <% } else { %>
-                Non-member
-            <% } %>
-        </p>
+                </div>
 
-        <% if (user.is_admin) { %>
+                <div class="profile-field">
 
-            <p>
-                <strong>Role:</strong>
-                Admin
-            </p>
+                    <span class="profile-label">
+                        First Name
+                    </span>
 
-        <% } %>
+                    <span class="profile-value">
+                        <%= user.first_name %>
+                    </span>
 
-        <% if (user.is_admin) { %>
+                </div>
 
-            <p>
-                You have administrator access.
-            </p>
+                <div class="profile-field">
 
-        <% } else if (user.membership_status) { %>
+                    <span class="profile-label">
+                        Last Name
+                    </span>
 
-            <form action="/users/leave-club" method="POST">
+                    <span class="profile-value">
+                        <%= user.last_name %>
+                    </span>
 
-                <button type="submit">
-                    Leave Club
-                </button>
+                </div>
 
-            </form>
+                <div class="profile-field">
 
-        <% } else { %>
+                    <span class="profile-label">
+                        Email
+                    </span>
 
-            <form action="/users/join-club" method="POST">
+                    <span class="profile-value">
+                        <%= user.email %>
+                    </span>
 
-                <button type="submit">
-                    Join Club
-                </button>
+                </div>
 
-            </form>
+                <div class="profile-field">
 
-        <% } %>
+                    <span class="profile-label">
+                        Membership
+                    </span>
+
+                    <span class="profile-value">
+                        <% if (user.membership_status) { %>
+                            Member
+                        <% } else { %>
+                            Non-member
+                        <% } %>
+                    </span>
+
+                </div>
+
+                <% if (user.is_admin) { %>
+
+                    <div class="profile-field">
+
+                        <span class="profile-label">
+                            Role
+                        </span>
+
+                        <span class="profile-value">
+                            Admin
+                        </span>
+
+                    </div>
+
+                <% } %>
+
+            </div>
+
+            <div class="profile-actions">
+
+                <% if (user.is_admin) { %>
+
+                    <p class="admin-message">
+                        You have administrator access.
+                    </p>
+
+                <% } else if (user.membership_status) { %>
+
+                    <form
+                        action="/users/leave-club"
+                        method="POST"
+                    >
+                        <button
+                            class="profile-button"
+                            type="submit"
+                        >
+                            Leave Club
+                        </button>
+                    </form>
+
+                <% } else { %>
+
+                    <form
+                        action="/users/join-club"
+                        method="POST"
+                    >
+                        <button
+                            class="profile-button"
+                            type="submit"
+                        >
+                            Join Club
+                        </button>
+                    </form>
+
+                <% } %>
+
+            </div>
+
+        </section>
 
     </main>
 

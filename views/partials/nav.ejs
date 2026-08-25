@@ -1,6 +1,6 @@
-<nav>
-    <div class="nav-container">
+<nav class="site-nav">
 
+    <div class="nav-main">
         <a href="/">Home</a>
 
         <% if (isAuthenticated) { %>
@@ -9,19 +9,34 @@
 
             <a href="/users/profile">Profile</a>
 
+        <% } %>
+    </div>
+
+
+    <div class="nav-auth">
+
+        <% if (isAuthenticated) { %>
+
             <form action="/logout" method="POST">
-                <button type="submit">Logout</button>
+                <button class="nav-logout" type="submit">
+                    Logout
+                </button>
             </form>
 
         <% } else { %>
 
-            <a href="/login">Login</a>
+            <a class="nav-login" href="/login">
+                Login
+            </a>
 
-            <a href="/users/create">Sign Up</a>
+            <a class="nav-signup" href="/users/create">
+                Sign Up
+            </a>
 
         <% } %>
 
     </div>
+
 </nav>
 
 <%- include("flashMessage") %>

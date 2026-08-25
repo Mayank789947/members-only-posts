@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <%- include("partials/head") %>
@@ -13,9 +14,9 @@
 
         <article class="message-detail">
 
-            <h2 class="message-detail-title">
+            <h1 class="message-detail-title">
                 <%= message.title %>
-            </h2>
+            </h1>
 
             <p class="message-content">
                 <%= message.message %>
@@ -54,12 +55,16 @@
                         Become a member to see the author and posting time.
                     </p>
 
-                    <form action="/users/join-club" method="POST">
-
-                        <button type="submit">
+                    <form
+                        action="/users/join-club"
+                        method="POST"
+                    >
+                        <button
+                            class="message-action-button"
+                            type="submit"
+                        >
                             Join Club
                         </button>
-
                     </form>
 
                 </div>
@@ -96,7 +101,10 @@
                         action="/messages/delete/<%= message.id %>"
                         method="POST"
                     >
-                        <button type="submit">
+                        <button
+                            class="delete-message-button"
+                            type="submit"
+                        >
                             Delete Message
                         </button>
                     </form>
