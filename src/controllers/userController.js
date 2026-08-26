@@ -1,7 +1,7 @@
 const { matchedData } = require("express-validator");
 const bcrypt = require("bcrypt");
 const userModel = require("../models/userModel");
-const NotFoundError = require("../errors/NotFoundError");
+
 
 function renderSignupForm(req, res, next) {
     try {

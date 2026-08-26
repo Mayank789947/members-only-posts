@@ -116,6 +116,13 @@
                         action="/users/leave-club"
                         method="POST"
                     >
+
+                    <input
+                           type="hidden"
+                           name="_csrf"
+                           value="<%= csrfToken %>"
+                    >
+
                         <button
                             class="profile-button"
                             type="submit"
@@ -130,6 +137,12 @@
                         action="/users/join-club"
                         method="POST"
                     >
+
+                        <input
+                           type="hidden"
+                           name="_csrf"
+                           value="<%= csrfToken %>"
+                        >
                         <button
                             class="profile-button"
                             type="submit"

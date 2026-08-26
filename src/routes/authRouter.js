@@ -3,6 +3,8 @@ const { Router } = require("express");
 const authController = require("../controllers/authController");
 
 const validateLogin = require("../validators/authValidator");
+const verifyCsrfToken =
+    require("../middlewares/securityMiddlewares/verifyCsrfToken");
 
 const handleValidationErrors =
     require("../middlewares/errorMiddlewares/handleValidationError");
@@ -18,6 +20,7 @@ authRouter.get(
 
 authRouter.post(
     "/login",
+    verifyCsrfToken,
 
     validateLogin,
 
@@ -61,6 +64,7 @@ authRouter.post(
 
 authRouter.post(
     "/logout",
+    verifyCsrfToken,
     authController.logout
 );
 

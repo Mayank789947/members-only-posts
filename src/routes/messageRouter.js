@@ -5,6 +5,8 @@ const requireAuth = require("../middlewares/authMiddlewares/requireAuth");
 const requireAdmin = require("../middlewares/authMiddlewares/requireAdmin");
 const requireMessageOwnerOrAdmin = require("../middlewares/authMiddlewares/requireMessageOwnerOrAdmin");
 const validateMessage = require("../validators/messageValidator");
+const verifyCsrfToken =
+    require("../middlewares/securityMiddlewares/verifyCsrfToken");
 
 const messageRouter = Router();
 
@@ -22,6 +24,7 @@ messageRouter.get(
 messageRouter.post(
     "/create",
     requireAuth,
+    verifyCsrfToken,
     validateMessage,
     handleValidationErrors("newMessage"),
     messageController.createMessage
@@ -30,6 +33,7 @@ messageRouter.post(
 messageRouter.post(
     "/delete/:messageId",
     requireAuth,
+    verifyCsrfToken,
     requireAdmin,
     messageController.deleteMessage
 );
@@ -44,6 +48,7 @@ messageRouter.get(
 messageRouter.post(
     "/:messageId/edit",
     requireAuth,
+    verifyCsrfToken,
     requireMessageOwnerOrAdmin,
     validateMessage,
     messageController.updateMessage

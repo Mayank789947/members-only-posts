@@ -12,6 +12,7 @@ require("./src/config/passport");
 const path = require("path");
 const flashMessage = require("./src/middlewares/flashMessage");
 const pool = require("./src/db/pool");
+const csrfToken = require("./src/middlewares/securityMiddlewares/csrf");
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(session({
         pool: pool,
         tableName: "session"
     }),
+    name: "members_session",
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
@@ -37,6 +39,7 @@ app.use(session({
     }
 }));
 
+app.use(csrfToken);
 app.use(flashMessage);
 app.use(passport.initialize());
 app.use(passport.session());

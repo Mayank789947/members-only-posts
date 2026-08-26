@@ -18,6 +18,11 @@
         <% if (isAuthenticated) { %>
 
             <form action="/logout" method="POST">
+                <input
+                    type="hidden"
+                    name="_csrf"
+                    value="<%= csrfToken %>"
+                >
                 <button class="nav-logout" type="submit">
                     Logout
                 </button>
