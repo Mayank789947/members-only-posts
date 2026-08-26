@@ -4,6 +4,8 @@ CREATE TABLE IF NOT EXISTS users (
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
 
+    username VARCHAR(50) NOT NULL,
+
     email VARCHAR(254) NOT NULL UNIQUE,
 
     password_hash VARCHAR(255) NOT NULL,
@@ -25,7 +27,7 @@ CREATE TABLE IF NOT EXISTS messages (
         ON DELETE CASCADE,
 
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL,
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 
     CONSTRAINT message_title_not_empty
         CHECK (length(trim(title)) > 0),
@@ -39,6 +41,3 @@ ON messages(user_id);
 
 CREATE INDEX idx_messages_created_at
 ON messages(created_at DESC);
-
-ALTER TABLE users
-ADD COLUMN username VARCHAR(50) NOT NULL;
