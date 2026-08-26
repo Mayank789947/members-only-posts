@@ -1,25 +1,31 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <%- include("../partials/head") %>
 
 <body>
 
-    <%- include("../partials/header") %>
+<%- include("../partials/header") %>
 
-    <%- include("../partials/nav") %>
+<%- include("../partials/nav") %>
 
-    <main>
+<main class="error-page">
 
-        <h2>Error <%= statusCode %></h2>
+    <section class="error-container">
+
+        <h1><%= statusCode %></h1>
 
         <p><%= message %></p>
 
-        <a href="/">Go Home</a>
+        <a href="/">Back to Home</a>
 
-    </main>
+    </section>
 
-    <%- include("../partials/footer") %>
+</main>
+
+
+<%- include("../partials/footer") %>
 
 </body>
 
