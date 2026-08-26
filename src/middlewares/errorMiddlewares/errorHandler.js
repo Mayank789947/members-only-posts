@@ -3,21 +3,19 @@ function errorHandler(err, req, res, next) {
 
     const statusCode = err.statusCode || 500;
     const status = err.status || "error";
-
-    const message =
-        statusCode >= 500
-            ? "Internal server error"
-            : err.message || "An error occurred.";
+    const message = err.message || "Internal server error";
 
     if (req.accepts("html")) {
-        return res.status(statusCode).render("errors/error", {
+        res.status(statusCode).render("errors/error", {
+            statusCode,
+            message
+        });
+    } else {
+        res.status(statusCode).json({
             statusCode,
             message
         });
     }
-
-    return res.status(statusCode).json({
-        statusCode,
-        message
-    });
 }
+
+module.exports = errorHandler;
