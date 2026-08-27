@@ -36,8 +36,8 @@ CREATE TABLE IF NOT EXISTS messages (
         CHECK (length(trim(message)) > 0)
 );
 
-CREATE INDEX idx_messages_user_id
+CREATE INDEX IF NOT EXISTS idx_messages_user_id
 ON messages(user_id);
 
-CREATE INDEX idx_messages_created_at
+CREATE INDEX IF NOT EXISTS idx_messages_created_at
 ON messages(created_at DESC);
