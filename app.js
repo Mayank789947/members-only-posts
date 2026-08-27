@@ -16,6 +16,10 @@ const csrfToken = require("./src/middlewares/securityMiddlewares/csrf");
 
 const app = express();
 
+if (process.env.NODE_ENV === "production") {
+    app.set("trust proxy", 1);
+}
+
 app.set("view engine", "ejs");
 
 app.use(express.json());
@@ -40,16 +44,6 @@ app.use(session({
 }));
 
 app.use(csrfToken);
-
-app.use((req, res, next) => {
-    console.log("Session ID:", req.sessionID);
-    console.log("Session exists:", !!req.session);
-    console.log("CSRF exists:", !!req.session?.csrfToken);
-
-    next();
-
-});
-
 
 app.use(flashMessage);
 app.use(passport.initialize());
